@@ -35,9 +35,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    loadCohorts({
-      commit
-    }) {
+    loadCohorts({commit}) {
       commit('setLoading', true)
       firebase.database().ref('cohorts').once("value")
         .then(data => {
@@ -56,14 +54,12 @@ export const store = new Vuex.Store({
           commit('setLoading', false)
         });
     },
-    createCohort({
-      commit
-    }, payload) {
+    createCohort({commit}, payload) {
       let cohort = {
         title: payload.title,
         num: payload.num,
         city: payload.city,
-        date: payload.date.toString()
+        date: payload.date.toString(),
       }
       firebase.database().ref('cohorts').push(cohort)
         .then(data => {
@@ -74,9 +70,7 @@ export const store = new Vuex.Store({
         })
         .catch()
     },
-    signUserUp({
-      commit
-    }, payload) {
+    signUserUp({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
@@ -97,9 +91,7 @@ export const store = new Vuex.Store({
           }
         )
     },
-    signUserIn({
-      commit
-    }, payload) {
+    signUserIn({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)

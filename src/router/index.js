@@ -8,6 +8,7 @@ import CityCohort from '@/components/Cohorts/CityCohort'
 import Cities from '@/components/Cohorts/Cities'
 import Programs from '@/components/Cohorts/Programs'
 import CreateCohort from '@/components/Cohorts/CreateCohort'
+import EditCohort from '@/components/Cohorts/EditCohort'
 import Signin from '@/components/Users/Signin'
 import Signup from '@/components/Users/Signup'
 import User from '@/components/Users/User'
@@ -37,6 +38,11 @@ export default new Router({
       name: 'Cohort',
       props: true,
       component: Cohort
+    }, {
+      path: '/cohort/editCohort/:id',
+      name: 'editCohort',
+      props: true,
+      component: EditCohort
     }, {
       path: '/signin',
       name: 'Signin',

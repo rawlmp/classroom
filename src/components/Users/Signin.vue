@@ -83,18 +83,13 @@ export default {
     loading(){
       return this.$store.getters.loading
     },
-    go(){
-      if(this.user !== null){
+  },
+  watch:{
+    user(value){
+      if(value !== null){
         this.$router.push("/cities")
       }
     }
-  },
-  watch:{
-    // user(value){
-    //   if(value !== null){
-    //     this.$router.push("/cities")
-    //   }
-    // }
   }
 }
 </script>

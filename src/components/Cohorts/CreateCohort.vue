@@ -15,7 +15,7 @@
     </v-layout>
     <v-layout row>
       <v-flex xs12>
-        <form @submit.prevent="oncreateCohort">
+        <form @submit.prevent="onCreateCohort">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-select
@@ -25,6 +25,7 @@
                 id="title"
                 v-model="title"
                 :items="programs"
+                prepend-icon="computer"
                 :rules="[rules.required]"
               ></v-select>
             </v-flex>
@@ -33,14 +34,32 @@
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
-                color="red"
                 name="num"
-                label="Numeration"
+                color="red"
+                label="Program Number"
                 id="num"
                 v-model="num"
+                :readonly="true"
                 :rules="[rules.required]"
-                hint="For example, 107"
+                prepend-icon="format_list_numbered"
+                hint="Use the Slider"
               ></v-text-field>
+            </v-flex>
+          </v-layout>
+
+          <v-layout row class="mt-2">
+            <v-flex xs12 sm6 offset-sm3>
+              <v-slider
+                prepend-icon="format_list_numbered"
+                v-model="num"
+                thumb-color="red"
+                min="101"
+                max="120"
+                thumb-size="50"
+                tick-size="5"
+                color="red"
+                :rules="[rules.required]"
+              ></v-slider>
             </v-flex>
           </v-layout>
 
@@ -52,44 +71,41 @@
               :items="cities"
               color="red"
               label="City"
-            ></v-select>
+              prepend-icon="location_city"
+              ></v-select>
             </v-flex>
           </v-layout>
-
-          <!-- <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                color="red"
-                name="imageUrl"
-                label="Image URL"
-                id="image-url"
-                v-model="imageUrl"
-                :rules="[rules.required]"
-              ></v-text-field>
-            </v-flex>
-          </v-layout> -->
-
-          <!-- <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <img :src="imageUrl" height="200">
-            </v-flex>
-          </v-layout> -->
 
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm4>
-              <h3>Starting date</h3>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-dialog
+                ref="dialog"
+                v-model="modal"
+                :return-value.sync="date"
+                persistent
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  v-model="date"
+                  label="Starting Date"
+                  prepend-icon="event"
+                  readonly
+                ></v-text-field>
+                <v-date-picker
+                  v-model="date"
+                  :rules="[rules.required]"
+                  color="red"
+                  scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="red" @click="$refs.dialog.save(date)">OK</v-btn>
+                </v-date-picker>
+              </v-dialog>
             </v-flex>
           </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm4>
-              <v-date-picker
-                v-model="date"
-                :reactive=true
-                color="red"
-                :rules="[rules.required]"
-                ></v-date-picker>
-            </v-flex>
-          </v-layout>
+
           <v-layout row>
             <v-flex xs12 sm6 offset-sm5 class="mt-3">
               <v-btn
@@ -112,8 +128,9 @@ export default {
     return{
       title: "",
       city: "",
-      num: "",
+      num: 101,
       date: "",
+      modal: false,
       rules: {
           required: value => !!value || 'Required.'
       },
@@ -134,7 +151,7 @@ export default {
     }
   },
   methods:{
-    oncreateCohort(){
+    onCreateCohort(){
       if(!this.formIsValid){
         return
       }

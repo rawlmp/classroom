@@ -1,6 +1,6 @@
 <template lang="html">
   <v-container>
-    <v-layout v-show="!loading"row wrap class="mb-2">
+    <v-layout v-show="!loading" row wrap class="mb-2">
       <v-flex xs12 sm6 class="text-xs-center text-sm-right">
         <v-btn large to="/cohorts" class="red--text" flat>Explore Cohorts</v-btn>
       </v-flex>
@@ -16,11 +16,11 @@
     <transition name="fade">
     <v-layout row wrap v-if="!loading">
       <v-flex xs12>
-        <v-carousel style="cursor:pointer;">
+        <v-carousel style="height: 400px;">
             <v-carousel-item
               v-for="item in cohorts"
               :key="item.id"
-              src="https://picsum.photos/700/500/?random"
+              src="https://picsum.photos/600/400/?random"
               @click="loadCohort(item.id)">
                 <div class="title">
                   {{ item.title}}
@@ -41,6 +41,7 @@
 
 <script>
 /* eslint-disable */
+
 export default {
   data(){
     return{
@@ -53,7 +54,7 @@ export default {
   },
   computed:{
     cohorts(){
-      return this.$store.getters.featuredCohorts;
+      return this.$store.getters.featuredCohorts
     },
     loading(){
       return this.$store.getters.loading
@@ -66,6 +67,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 .title{
   color: white;
   background-color: rgba(0,0,0,.5);
@@ -73,5 +75,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+v-carousel {
+  cursor: pointer;
 }
 </style>
