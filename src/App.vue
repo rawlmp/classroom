@@ -54,9 +54,9 @@ export default {
 
       if(this.userIsAuthenticated){
         menuItems = [
-          {icon: "supervisor_account" , title: "Cohorts", link:"/cohorts"},
-          {icon: "create" , title: "Add New", link:"/createcohort"},
-          {icon: "location_city" , title: "Cities", link:"/cities"},
+          {icon: "supervisor_account" , title: "By date", link:"/cohorts"},
+          {icon: "location_city" , title: "By city", link:"/cities"},
+          {icon: "add" , title: "Add New", link:"/createcohort"},
           {icon: "person" , title: "You", link:"/user"}
         ]
       }

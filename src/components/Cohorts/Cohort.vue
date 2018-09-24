@@ -21,8 +21,9 @@
             <v-btn
               class="red"
               :to="'/cohort/editCohort/' + cohort.id "
-              dark>
-              Edit Cohort
+              dark
+              fab>
+              <v-icon dark>edit</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -32,18 +33,18 @@
 </template>
 
 <script>
-/* eslint-disable */
-export default {
-  props:['id'],
-  computed:{
-    cohort(){
-      return this.$store.getters.loadedCohort(this.id)
-    },
-    user(){
-      return this.$store.getters.user
+  /* eslint-disable */
+  export default {
+    props: ['id'],
+    computed: {
+      cohort () {
+        return this.$store.getters.loadedCohort(this.id)
+      },
+      user () {
+        return this.$store.getters.user
+      }
     }
   }
-}
 </script>
 
 <style lang="css">

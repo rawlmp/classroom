@@ -1,6 +1,14 @@
 <template lang="html">
   <v-container>
-    <v-layout row wrap>
+    <v-layout row wrap v-if="loading">
+      <v-flex xs12 sm6 offset-sm3>
+        <h3>Updating Cohorts...</h3>
+      </v-flex>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-progress-linear :indeterminate="true"></v-progress-linear>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap v-if="!loading">
       <v-flex xs12 sm12 md6 lg6 v-for="cohort in cohorts" :key="cohort.id" class="my-3">
         <v-card>
           <v-container fluid>
@@ -39,6 +47,9 @@ export default {
   computed: {
     cohorts () {
       return this.$store.getters.loadedCohorts
+    },
+    loading(){
+      return this.$store.getters.loading
     }
   }
 }

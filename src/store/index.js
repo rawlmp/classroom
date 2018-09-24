@@ -70,6 +70,20 @@ export const store = new Vuex.Store({
         })
         .catch()
     },
+    updateCohort({commit, dispatch}, payload){
+      let cohort = {
+        title: payload.title,
+        num: payload.num,
+        city: payload.city,
+        date: payload.date.toString(),
+        id: payload.id
+      }
+
+      firebase.database().ref("cohorts/" + payload.id).update(cohort)
+      dispatch('loadCohorts')
+
+
+    },
     signUserUp({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')

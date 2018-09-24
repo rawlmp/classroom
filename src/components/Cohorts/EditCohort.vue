@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 align-center>
-      <form @submit.prevent="onCreateCohort">
+      <form @submit.prevent="updateCohort">
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-select
@@ -77,6 +77,16 @@
             </v-dialog>
           </v-flex>
         </v-layout>
+
+        <v-layout row>
+          <v-flex xs12 sm6 offset-sm5 class="mt-3">
+            <v-btn
+              type="submit"
+              class="red"
+              dark
+              >Update Cohort</v-btn>
+          </v-flex>
+        </v-layout>
       </form>
       </v-flex>
     </v-layout>
@@ -118,7 +128,19 @@
       defaultDate(){
         this.date = this.cohort.date
       }
-
+    },
+    methods:{
+      updateCohort(){
+        let updatedCohort = {
+          title: this.title,
+          city: this.city,
+          num: this.num,
+          date: this.date,
+          id: this.id
+        }
+        this.$store.dispatch("updateCohort", updatedCohort)
+        this.$router.push('/cohort/' + this.id)
+      }
     }
   }
 </script>
