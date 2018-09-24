@@ -1,0 +1,2 @@
+- Crear una alerta para mostrar en los componentes cuando no estás registrado
+- 
