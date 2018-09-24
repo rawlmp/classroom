@@ -49,7 +49,7 @@ export default {
     menuItems(){
       let menuItems = [
         // {icon: "face" , title: "Sign up", link:"/signup"},
-        {icon: "lock_open" , title: "Sign in", link:"/signin"}
+        {icon: "lock_open" , title: "Log in", link:"/signin"}
       ]
 
       if(this.userIsAuthenticated){

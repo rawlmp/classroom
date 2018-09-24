@@ -82,14 +82,19 @@ export default {
     },
     loading(){
       return this.$store.getters.loading
-    }
-  },
-  watch:{
-    user(value){
-      if(value !== null){
+    },
+    go(){
+      if(this.user !== null){
         this.$router.push("/cities")
       }
     }
+  },
+  watch:{
+    // user(value){
+    //   if(value !== null){
+    //     this.$router.push("/cities")
+    //   }
+    // }
   }
 }
 </script>

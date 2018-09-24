@@ -1,5 +1,13 @@
 <template lang="html">
   <v-container>
+    <v-layout row v-if="!user">
+      <v-flex xs12>
+        <v-container fluid>
+          <alert text="Login to create Cohorts"></alert>
+        </v-container>
+      </v-flex>
+    </v-layout>
+    <v-container v-if="user">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <h2>Create a new Cohort</h2>
@@ -94,6 +102,7 @@
         </form>
       </v-flex>
     </v-layout>
+    </v-container>
   </v-container>
 </template>
 
@@ -119,6 +128,9 @@ export default {
     },
     programs(){
       return this.$store.getters.availablePrograms
+    },
+    user(){
+      return this.$store.getters.user
     }
   },
   methods:{
