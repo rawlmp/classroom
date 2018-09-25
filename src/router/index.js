@@ -12,6 +12,7 @@ import EditCohort from '@/components/Cohorts/EditCohort'
 import Signin from '@/components/Users/Signin'
 import Signup from '@/components/Users/Signup'
 import User from '@/components/Users/User'
+import AuthGuard from '@/router/authGuard'
 
 Vue.use(Router)
 
@@ -19,7 +20,7 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'landing',
-      component: Signin
+      component: Home
     }, {
       path: '/home',
       name: 'Home',
@@ -32,7 +33,8 @@ export default new Router({
     }, {
       path: '/createcohort',
       name: 'CreateCohort',
-      component: CreateCohort
+      component: CreateCohort,
+      beforeEnter: AuthGuard
     }, {
       path: '/cohort/:id',
       name: 'Cohort',
@@ -42,7 +44,8 @@ export default new Router({
       path: '/cohort/editCohort/:id',
       name: 'editCohort',
       props: true,
-      component: EditCohort
+      component: EditCohort,
+      beforeEnter: AuthGuard
     }, {
       path: '/signin',
       name: 'Signin',
@@ -54,21 +57,28 @@ export default new Router({
     }, {
       path: '/user',
       name: 'user',
-      component: User
+      component: User,
+      beforeEnter: AuthGuard
+
     }, {
       path: '/cohorts/:city',
       name: 'city',
       props: true,
-      component: Programs
+      component: Programs,
+      beforeEnter: AuthGuard
+
     }, {
       path: '/cohorts/:city/:program',
       name: 'CityCohort',
       props: true,
-      component: CityCohort
+      component: CityCohort,
+      beforeEnter: AuthGuard
+
     }, {
       path: '/cities',
       name: 'cities',
-      component: Cities
+      component: Cities,
+      beforeEnter: AuthGuard
     }
   ],
   mode: "history"

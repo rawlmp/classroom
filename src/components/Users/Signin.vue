@@ -87,7 +87,8 @@ export default {
   watch:{
     user(value){
       if(value !== null){
-        this.$router.push("/cities")
+        // this.$router.push("/cities")
+        this.$router.go(-1)
       }
     }
   }

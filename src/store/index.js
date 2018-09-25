@@ -48,18 +48,20 @@ export const store = new Vuex.Store({
               num: obj[key].num,
               date: obj[key].date,
               city: obj[key].city,
+              creator: obj[key].creatorId
             })
           }
           commit("setCohorts", cohorts)
           commit('setLoading', false)
         });
     },
-    createCohort({commit}, payload) {
+    createCohort({commit, getters}, payload) {
       let cohort = {
         title: payload.title,
         num: payload.num,
         city: payload.city,
         date: payload.date.toString(),
+        creator: getters.user.email
       }
       firebase.database().ref('cohorts').push(cohort)
         .then(data => {
@@ -76,7 +78,6 @@ export const store = new Vuex.Store({
         num: payload.num,
         city: payload.city,
         date: payload.date.toString(),
-        id: payload.id
       }
 
       firebase.database().ref("cohorts/" + payload.id).update(cohort)
@@ -92,7 +93,7 @@ export const store = new Vuex.Store({
           user => {
             const newUser = {
               id: user.user.uid,
-              registeredCohorts: []
+              email: payload.email
             }
             commit("setUser", newUser)
             commit('setLoading', false)
@@ -113,7 +114,7 @@ export const store = new Vuex.Store({
           user => {
             const newUser = {
               id: user.user.uid,
-              registeredCohorts: []
+              email: payload.email
             }
             commit("setUser", newUser)
             commit('setLoading', false)
@@ -126,9 +127,14 @@ export const store = new Vuex.Store({
           }
         )
     },
-    clearError({
-      commit
-    }) {
+    autoLogin({commit}, payload){
+      commit('setUser', {id: payload.uid, email: payload.email})
+    },
+    logout({commit}){
+      firebase.auth().signOut()
+      commit('setUser', null)
+    },
+    clearError({commit}) {
       commit('clearError')
     }
   },
