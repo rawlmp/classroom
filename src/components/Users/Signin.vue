@@ -62,7 +62,7 @@ export default {
   data(){
     return{
       email: "raul@admin.com",
-      password: "80008000"
+      password: "8000800"
     }
   },
   methods:{
