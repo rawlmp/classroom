@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-layout row v-if="alert">
+      <v-flex xs12>
+        <v-container fluid>
+          <alert text="Cohort Updated" type="success"></alert>
+        </v-container>
+      </v-flex>
+    </v-layout>
     <v-layout row>
       <v-flex xs12 align-center>
       <form @submit.prevent="updateCohort">
@@ -79,12 +86,23 @@
         </v-layout>
 
         <v-layout row>
-          <v-flex xs12 sm6 offset-sm5 class="mt-3">
+          <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-right">
             <v-btn
               type="submit"
               class="red"
               dark
-              >Update Cohort</v-btn>
+              >Update Cohort
+              <v-icon>update</v-icon>
+            </v-btn>
+          </v-flex>
+          <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-left">
+            <v-btn
+              type="submit"
+              class="red"
+              dark
+            >Add Student
+              <v-icon>exit_to_app</v-icon>
+            </v-btn>
           </v-flex>
         </v-layout>
       </form>
@@ -103,7 +121,8 @@
         city: "",
         num: "",
         date: "",
-        modal: false
+        modal: false,
+        alert: false
       }
     },
     computed:{
@@ -139,7 +158,8 @@
           id: this.id
         }
         this.$store.dispatch("updateCohort", updatedCohort)
-        this.$router.push('/cohort/' + this.id)
+        this.alert = true
+        // this.$router.push('/cohort/' + this.id)
       }
     }
   }

@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row v-if="error">
       <v-flex xs12 sm6 offset-sm3>
-        <alert @dismissed="onDismiss" :text="error.message"></alert>
+        <alert @dismissed="onDismiss" :text="error.message" type="error"></alert>
       </v-flex>
     </v-layout>
     <v-layout row>

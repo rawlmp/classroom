@@ -3,7 +3,7 @@
     <v-layout row v-if="!user">
       <v-flex xs12>
         <v-container fluid>
-          <alert text="Login to create Cohorts"></alert>
+          <alert text="Login to create Cohorts" type="error"></alert>
         </v-container>
       </v-flex>
     </v-layout>
