@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card class="pa-2">
-      <form>
+      <form @submit.prevent="addStudent">
         <v-layout row wrap>
           <v-card-text>
             <div>
@@ -176,8 +176,9 @@
         <v-layout row wrap>
           <v-flex xs4 offset-xs4>
             <v-btn
-            dark
-            class="red">
+              type="submit"
+              dark
+              class="red">
               Add Student
             </v-btn>
           </v-flex>
@@ -232,6 +233,14 @@
       },
       cohort(){
         return this.$store.getters.loadedCohort(this.id)
+      }
+    },
+    methods:{
+      addStudent(){
+        this.$store.dispatch("addStudent", { student: {studentName: "weko"}, id: this.id })
+          .then(() => {
+            this.$router.go(-1)
+          })
       }
     }
   }

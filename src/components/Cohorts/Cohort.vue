@@ -16,6 +16,10 @@
               {{ cohort.description }}
             </div>
           </v-card-text>
+          <v-flex xs12>
+            <p v-if="!cohort.students">No Students yet</p>
+            <p v-else v-for="student in cohort.students">{{student.studentName}}</p>
+          </v-flex>
           <v-card-actions v-if="user">
             <v-spacer></v-spacer>
             <v-btn

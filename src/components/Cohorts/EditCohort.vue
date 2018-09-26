@@ -149,7 +149,9 @@
           id: this.id
         }
         this.$store.dispatch("updateCohort", updatedCohort)
-        this.alert = true
+          .then(() => {
+            this.alert = true
+          })
         // this.$router.push('/cohort/' + this.id)
       }
     }

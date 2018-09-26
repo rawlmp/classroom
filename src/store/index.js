@@ -48,7 +48,8 @@ export const store = new Vuex.Store({
               num: obj[key].num,
               date: obj[key].date,
               city: obj[key].city,
-              creator: obj[key].creatorId
+              creator: obj[key].creatorId,
+              students: obj[key].students
             })
           }
           commit("setCohorts", cohorts)
@@ -77,13 +78,16 @@ export const store = new Vuex.Store({
         title: payload.title,
         num: payload.num,
         city: payload.city,
-        date: payload.date.toString(),
+        date: payload.date.toString()
       }
 
       firebase.database().ref("cohorts/" + payload.id).update(cohort)
       dispatch('loadCohorts')
+    },
+    addStudent({commit, dispatch}, payload){
 
-
+      firebase.database().ref("cohorts/" + payload.id + "/students").push(payload.student)
+      dispatch('loadCohorts')
     },
     signUserUp({commit}, payload) {
       commit('setLoading', true)
