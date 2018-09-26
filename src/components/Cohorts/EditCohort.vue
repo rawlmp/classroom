@@ -13,7 +13,6 @@
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-select
-              :text-value="defaultTitle"
               v-model="title"
               :items="programs"
               id="title"
@@ -28,7 +27,6 @@
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-text-field
-              :text-value="defaultNum"
               color="red"
               name="num"
               label="Numeration"
@@ -43,7 +41,6 @@
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-select
-              :text-value="defaultCity"
               v-model="city"
               :items="cities"
               label="City"
@@ -58,7 +55,6 @@
           <v-flex xs12 sm6 offset-sm3>
             <v-dialog
               ref="dialog"
-              :text-value="defaultDate"
               v-model="modal"
               :return-value.sync="date"
               persistent
@@ -100,6 +96,7 @@
               type="submit"
               class="red"
               dark
+              :to="'/createStudent/' + this.id"
             >Add Student
               <v-icon>exit_to_app</v-icon>
             </v-btn>
@@ -125,6 +122,12 @@
         alert: false
       }
     },
+    created(){
+      this.title = this.cohort.title
+      this.city = this.cohort.city
+      this.num = this.cohort.num
+      this.date = this.cohort.date
+    },
     computed:{
       cohort(){
         return this.$store.getters.loadedCohort(this.id)
@@ -134,18 +137,6 @@
       },
       cities(){
         return this.$store.getters.availableCities
-      },
-      defaultTitle(){
-        this.title = this.cohort.title
-      },
-      defaultCity(){
-        this.city = this.cohort.city
-      },
-      defaultNum(){
-        this.num = this.cohort.num
-      },
-      defaultDate(){
-        this.date = this.cohort.date
       }
     },
     methods:{

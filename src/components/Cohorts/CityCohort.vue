@@ -1,10 +1,15 @@
 <template lang="html">
   <v-container>
-    <v-layout row v-if="cohorts.length == 0">
+    <v-layout row wrap v-if="cohorts.length == 0">
       <v-flex xs12>
         <v-container fluid>
           <alert text="No cohorts yet"></alert>
         </v-container>
+      </v-flex>
+      <v-flex xs4 offset-xs4>
+        <v-btn class="red" dark @click="goBack">
+          Go Back
+        </v-btn>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
@@ -48,9 +53,19 @@ export default {
     cohorts(){
       return this.$store.getters.cityCohorts(this.city, this.program);
     }
+  },
+  methods:{
+    goBack(){
+      this.$router.go(-1)
+    }
   }
 }
 </script>
 
 <style lang="css">
+  .flex.xs4.offset-xs4{
+    display: flex;
+    justify-content: center;
+  }
+
 </style>
