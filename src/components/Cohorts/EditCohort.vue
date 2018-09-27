@@ -85,7 +85,7 @@
           <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-right">
             <v-btn
               type="submit"
-              class="red"
+              class="green"
               dark
               >Update Cohort
               <v-icon>update</v-icon>
@@ -96,8 +96,8 @@
               type="submit"
               class="red"
               dark
-              :to="'/createStudent/' + this.id"
-            >Add Student
+              :to="'/students/' + this.id"
+            >Students
               <v-icon>exit_to_app</v-icon>
             </v-btn>
           </v-flex>

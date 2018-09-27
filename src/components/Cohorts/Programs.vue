@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container>
     <v-layout v-for="program in programs" :key="program" row wrap>
-      <v-flex xs12 sm12 class="text-xs-center">
+      <v-flex xs12 sm6 offset-sm3 class="text-xs-center">
         <v-btn block dark large :to="'/cohorts/' + city + '/' + program" class="red mt-4 mb-4" flat>{{program}}</v-btn>
       </v-flex>
     </v-layout>

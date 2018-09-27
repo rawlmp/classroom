@@ -9,15 +9,15 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap v-if="!loading">
-      <v-flex xs12 sm12 md6 lg6 v-for="cohort in cohorts" :key="cohort.id" class="my-3">
+      <v-flex xs12 sm6 lg6 v-for="cohort in cohorts" :key="cohort.id" class="my-2">
         <v-card>
           <v-container fluid>
             <v-layout>
               <v-flex xs5 sm4 md3>
-                <v-img
-                  src="https://pbs.twimg.com/profile_images/918106915795763200/Z0QK7_ej_400x400.jpg"
-                  width="100px"
-                ></v-img>
+                <!--<v-img-->
+                  <!--src="https://pbs.twimg.com/profile_images/918106915795763200/Z0QK7_ej_400x400.jpg"-->
+                  <!--width="100px"-->
+                <!--&gt;</v-img>-->
               </v-flex>
               <v-flex xs7 sm8 md9>
                 <v-card-title primary-title>

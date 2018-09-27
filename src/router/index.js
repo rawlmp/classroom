@@ -7,6 +7,7 @@ import Cohort from '@/components/Cohorts/Cohort'
 import CityCohort from '@/components/Cohorts/CityCohort'
 import Cities from '@/components/Cohorts/Cities'
 import Programs from '@/components/Cohorts/Programs'
+import Students from '@/components/Cohorts/Students'
 import CreateStudent from '@/components/Cohorts/CreateStudent'
 import CreateCohort from '@/components/Cohorts/CreateCohort'
 import EditCohort from '@/components/Cohorts/EditCohort'
@@ -37,6 +38,12 @@ export default new Router({
       component: CreateCohort,
       beforeEnter: AuthGuard
     }, {
+      path: '/students/:id',
+      name: 'Students',
+      component: Students,
+      beforeEnter: AuthGuard,
+      props: true
+    },{
       path: '/createStudent/:id',
       name: 'CreateStudent',
       component: CreateStudent,

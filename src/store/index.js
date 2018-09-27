@@ -62,7 +62,9 @@ export const store = new Vuex.Store({
         num: payload.num,
         city: payload.city,
         date: payload.date.toString(),
-        creator: getters.user.email
+        creator: getters.user.email,
+        students: getters.students,
+
       }
       firebase.database().ref('cohorts').push(cohort)
         .then(data => {
@@ -85,7 +87,6 @@ export const store = new Vuex.Store({
       dispatch('loadCohorts')
     },
     addStudent({commit, dispatch}, payload){
-
       firebase.database().ref("cohorts/" + payload.id + "/students").push(payload.student)
       dispatch('loadCohorts')
     },
@@ -147,6 +148,20 @@ export const store = new Vuex.Store({
       return state.loadedCohorts.sort((cohortA, cohortB) => {
         return cohortA.date < cohortB.date
       })
+    },
+    loadedStudent(state){
+      return (cohortId, studentId) => {
+        return state.loadedCohorts.find(cohort => {
+          return cohort.id === cohortId
+        }).students.find(student => {
+          return student.id === studentId
+        })
+      }
+    },
+    students(state, getters){
+      return (cohortId) => {
+        return getters.loadedCohort(cohortId).students
+      }
     },
     featuredCohorts(state, getters) {
       return getters.loadedCohorts.slice(0, 5)
