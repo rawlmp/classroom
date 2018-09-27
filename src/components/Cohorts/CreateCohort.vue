@@ -107,6 +107,34 @@
           </v-layout>
 
           <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-text-field
+                name="schedule"
+                color="red"
+                label="Google Schedule"
+                id="schedule"
+                v-model="schedule"
+                prepend-icon="schedule"
+                hint="Google Doc Url"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-text-field
+                name="slack"
+                color="red"
+                label="Slack Group"
+                id="slack"
+                v-model="slack"
+                prepend-icon="chat"
+                hint="Slack group Url"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+
+          <v-layout row>
             <v-flex xs12 sm6 offset-sm5 class="mt-3">
               <v-btn
                 type="submit"
@@ -130,6 +158,8 @@ export default {
       city: "",
       num: 101,
       date: "",
+      schedule: "",
+      slack:"",
       modal: false,
       rules: {
           required: value => !!value || 'Required.'
@@ -160,7 +190,9 @@ export default {
         city: this.city,
         num: this.num,
         description: this.description,
-        date: this.date
+        date: this.date,
+        schedule: this.schedule,
+        slack: this.slack
       }
       this.$store.dispatch("createCohort", cohortData)
       this.$router.push("/cohorts")

@@ -82,19 +82,47 @@
         </v-layout>
 
         <v-layout row>
-          <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-right">
+          <v-flex xs12 sm6 offset-sm3>
+            <v-text-field
+              color="red"
+              name="schedule"
+              label="Schedule"
+              id="schedule"
+              v-model="schedule"
+              outline
+              prepend-icon="schedule"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-text-field
+              color="red"
+              name="slack"
+              label="Slack"
+              id="slack"
+              v-model="slack"
+              outline
+              prepend-icon="chat"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row>
+          <v-flex xs12 sm12 id="buttons" class="mt-3 text-xs-center text-sm-right">
             <v-btn
               type="submit"
-              class="green"
+              class="green editButtons"
+              width="200"
               dark
-              >Update Cohort
+              >Update
               <v-icon>update</v-icon>
             </v-btn>
-          </v-flex>
-          <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-left">
             <v-btn
               type="submit"
-              class="red"
+              class="red editButtons"
+              width="200"
               dark
               :to="'/students/' + this.id"
             >Students
@@ -118,6 +146,8 @@
         city: "",
         num: "",
         date: "",
+        schedule: "",
+        slack: "",
         modal: false,
         alert: false
       }
@@ -127,6 +157,8 @@
       this.city = this.cohort.city
       this.num = this.cohort.num
       this.date = this.cohort.date
+      this.slack = this.cohort.slack
+      this.schedule = this.cohort.schedule
     },
     computed:{
       cohort(){
@@ -146,6 +178,8 @@
           city: this.city,
           num: this.num,
           date: this.date,
+          slack: this.slack,
+          schedule: this.schedule,
           id: this.id
         }
         this.$store.dispatch("updateCohort", updatedCohort)
@@ -159,5 +193,12 @@
 </script>
 
 <style scoped>
+  #buttons{
+    display: flex;
+    justify-content: center;
+  }
 
+  .editButtons{
+    width: 120px;
+  }
 </style>

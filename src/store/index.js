@@ -55,6 +55,8 @@ export const store = new Vuex.Store({
               num: obj[key].num,
               date: obj[key].date,
               city: obj[key].city,
+              slack: obj[key].slack,
+              schedule: obj[key].schedule,
               creator: obj[key].creatorId,
               students: students
             })
@@ -72,7 +74,8 @@ export const store = new Vuex.Store({
         city: payload.city,
         date: payload.date.toString(),
         creator: getters.user.email,
-        students: getters.students,
+        slack: payload.slack,
+        schedule: payload.schedule
 
       }
       firebase.database().ref('cohorts').push(cohort)
@@ -89,7 +92,9 @@ export const store = new Vuex.Store({
         title: payload.title,
         num: payload.num,
         city: payload.city,
-        date: payload.date.toString()
+        date: payload.date.toString(),
+        slack: payload.slack,
+        schedule: payload.schedule
       }
 
       firebase.database().ref("cohorts/" + payload.id).update(cohort)

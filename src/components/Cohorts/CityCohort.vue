@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container>
     <v-layout row wrap v-if="cohorts.length == 0">
-      <v-flex xs12 sm6>
+      <v-flex xs12 sm10 offset-sm1>
         <v-container fluid>
           <alert text="No cohorts yet"></alert>
         </v-container>

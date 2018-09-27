@@ -9,34 +9,36 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap v-if="!loading">
-      <v-flex xs12 sm6 lg6 v-for="cohort in cohorts" :key="cohort.id" class="my-2">
-        <v-card>
+      <v-flex xs10 offset-xs1 sm8 offset-sm2 v-for="cohort in cohorts" :key="cohort.id" class="my-2">
+        <v-list>
           <v-container fluid>
             <v-layout>
-              <v-flex xs5 sm4 md3>
-                <!--<v-img-->
-                  <!--src="https://pbs.twimg.com/profile_images/918106915795763200/Z0QK7_ej_400x400.jpg"-->
-                  <!--width="100px"-->
-                <!--&gt;</v-img>-->
-              </v-flex>
-              <v-flex xs7 sm8 md9>
-                <v-card-title primary-title>
-                    <div>
-                      <h3>{{cohort.title}} - {{cohort.num}}</h3>
-                      <div>{{cohort.city}}</div>
-                      <div>{{cohort.date}}</div>
-                    </div>
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-btn class="red" dark :to="'/cohort/' + cohort.id">
-                      <v-icon>arrow_forward</v-icon>
-                      View Cohort
+              <v-flex xs12 sm12>
+                <v-list-tile
+                  class="mt-2"
+                  avatar
+                >
+                  <v-list-tile-avatar>
+                    <v-icon large>computer</v-icon>
+                  </v-list-tile-avatar>
+
+                  <v-list-tile-content>
+                    <v-list-tile-title><h3>{{cohort.title}} - {{cohort.num}}</h3></v-list-tile-title>
+                    <v-list-tile-title>{{cohort.city}}</v-list-tile-title>
+                    <v-list-tile-title><small>{{cohort.date}}</small></v-list-tile-title>
+                  </v-list-tile-content>
+
+                  <v-list-tile-action>
+                    <v-btn icon ripple large :to="'/cohort/' + cohort.id">
+                      <v-icon color="blue">remove_red_eye</v-icon>
                     </v-btn>
-                  </v-card-actions>
+                  </v-list-tile-action>
+                </v-list-tile>
+
               </v-flex>
             </v-layout>
           </v-container>
-        </v-card>
+        </v-list>
       </v-flex>
     </v-layout>
   </v-container>
