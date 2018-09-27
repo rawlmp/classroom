@@ -42,6 +42,13 @@ export const store = new Vuex.Store({
           let cohorts = []
           let obj = data.val()
           for (let key in obj) {
+            let students = []
+            for (let key2 in obj[key].students){
+              students.push({
+                studentId: key2,
+                studentName: obj[key].students[key2].studentName
+              })
+            }
             cohorts.push({
               id: key,
               title: obj[key].title,
@@ -49,9 +56,11 @@ export const store = new Vuex.Store({
               date: obj[key].date,
               city: obj[key].city,
               creator: obj[key].creatorId,
-              students: obj[key].students
+              students: students
             })
+
           }
+
           commit("setCohorts", cohorts)
           commit('setLoading', false)
         });
@@ -84,6 +93,16 @@ export const store = new Vuex.Store({
       }
 
       firebase.database().ref("cohorts/" + payload.id).update(cohort)
+      dispatch('loadCohorts')
+    },
+    updateStudent({commit, dispatch}, payload ){
+      let student = {
+        studentName: payload.student.studentName,
+      }
+
+      console.log(payload)
+
+      firebase.database().ref("cohorts/" + payload.cohortId + "/students/" + payload.studentId).update(student)
       dispatch('loadCohorts')
     },
     addStudent({commit, dispatch}, payload){
@@ -154,7 +173,7 @@ export const store = new Vuex.Store({
         return state.loadedCohorts.find(cohort => {
           return cohort.id === cohortId
         }).students.find(student => {
-          return student.id === studentId
+          return student.studentId === studentId
         })
       }
     },

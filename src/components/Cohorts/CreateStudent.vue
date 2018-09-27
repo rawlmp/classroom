@@ -19,6 +19,7 @@
               <v-text-field
                 color="red"
                 name="name"
+                v-model="inputs.name"
                 label="Name"
                 id="name"
                 append-icon="face"
@@ -237,7 +238,7 @@
     },
     methods:{
       addStudent(){
-        this.$store.dispatch("addStudent", { student: {studentName: "weko"}, id: this.id })
+        this.$store.dispatch("addStudent", { student: {studentName: this.inputs.name}, id: this.id })
           .then(() => {
             this.$router.go(-1)
           })

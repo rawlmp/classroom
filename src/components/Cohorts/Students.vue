@@ -5,7 +5,6 @@
           <v-list subheader>
             <v-subheader v-if="students != undefined" inset class="pt-2 mb-2">Students in {{cohort.title}} {{cohort.num}} {{cohort.city}}</v-subheader>
 
-            <!--TODO Pasar el id del cohort y después en el componente createStudent buscar la forma de coger el id del estudiante-->
 
             <v-list-tile
               v-if="cohort.students != undefined"
@@ -13,6 +12,7 @@
               v-for="(student, i) in students"
               :key="i"
               avatar
+              :to="`/editStudent/${id}/${student.studentId}`"
             >
               <v-list-tile-avatar>
                 <v-icon large>face</v-icon>
@@ -30,7 +30,7 @@
             </v-list-tile>
 
             <v-list-tile
-              v-if="students == undefined"
+              v-if="students.length == 0"
               avatar
               class="mt-2">
               <v-list-tile-avatar>
@@ -49,6 +49,20 @@
             </v-list-tile>
 
           </v-list>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs6 offset-xs3>
+          <v-flex xs12 sm6 class="mt-3 text-xs-center text-sm-left">
+            <v-btn
+              type="button"
+              class="red"
+              dark
+              :to="'/createStudent/' + this.id"
+            >Create New Student
+              <v-icon>exit_to_app</v-icon>
+            </v-btn>
+          </v-flex>
         </v-flex>
       </v-layout>
     </v-container>
@@ -75,5 +89,9 @@
 </script>
 
 <style scoped>
+  .flex.xs6.offset-xs3{
+    display: flex;
+    justify-content: center;
+  }
 
 </style>
